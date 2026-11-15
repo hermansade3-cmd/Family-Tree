@@ -1,96 +1,121 @@
-<!DOCTYPE html>
-<html lang="sw">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>R-AI Trinity</title>
+<!DOCTYPE html><html lang="sw"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>FAMILY TREE – Kumbukumbu za Familia na Koo</title>
 <style>
-:root{--bg:#0f1420;--card:#18202f;--txt:#e8ecf4;--mut:#8a96ad;--sade:#3b82f6;--fire:#f97316;--search:#22c55e;--bd:#26304a}
-@media (prefers-color-scheme:light){:root{--bg:#f3f5fa;--card:#fff;--txt:#141a29;--mut:#5b667d;--bd:#dde3ef}}
-:root[data-theme=dark]{--bg:#0f1420;--card:#18202f;--txt:#e8ecf4;--mut:#8a96ad;--bd:#26304a}
-*{box-sizing:border-box}html,body{height:100%;margin:0}
-body{background:var(--bg);color:var(--txt);font:15px/1.5 system-ui,sans-serif;display:flex;flex-direction:column}
-header{padding:10px 12px;border-bottom:1px solid var(--bd);padding-top:max(10px,env(safe-area-inset-top))}
-.team{display:flex;gap:8px;justify-content:center}
-.ai{display:flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:var(--card);border:2px solid var(--bd);font-size:13px;font-weight:600}
-.ai.active{border-color:var(--c)}
-.av{width:26px;height:26px;border-radius:50%;background:var(--c);color:#fff;display:grid;place-items:center;font-size:13px;font-weight:700}
-#status{text-align:center;color:var(--mut);font-size:13px;min-height:20px;margin-top:6px}
-#chat{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:10px}
-.msg{display:flex;gap:8px;max-width:100%}
-.bub{background:var(--card);border:1px solid var(--bd);border-left:4px solid var(--c);border-radius:10px;padding:8px 10px;min-width:0;flex:1}
-.nm{font-weight:700;font-size:13px;color:var(--c)}.kd{font-size:11px;color:var(--mut);margin-left:6px;font-weight:400}
-.tx{white-space:pre-wrap;word-wrap:break-word;margin-top:2px}
-.err .bub{border-left-color:#ef4444}
-.src{margin-top:6px;font-size:12px;border-top:1px dashed var(--bd);padding-top:6px}
-.src a{color:var(--c);display:block;word-break:break-all}.src small{color:var(--mut)}
-.sade{--c:var(--sade)}.fire{--c:var(--fire)}.search{--c:var(--search)}
-form{display:flex;gap:8px;padding:10px 12px;border-top:1px solid var(--bd);padding-bottom:max(10px,env(safe-area-inset-bottom));background:var(--bg)}
-input{flex:1;padding:12px;border-radius:10px;border:1px solid var(--bd);background:var(--card);color:var(--txt);font-size:16px}
-button{padding:0 18px;border:0;border-radius:10px;background:var(--sade);color:#fff;font-weight:700;font-size:15px}
-button:disabled{opacity:.5}
-</style>
-</head>
-<body>
-<header>
-  <div class="team">
-    <div class="ai sade" id="ai-sade"><div class="av">S</div>Sade</div>
-    <div class="ai fire" id="ai-fire"><div class="av">F</div>R-AI Fire</div>
-    <div class="ai search" id="ai-search"><div class="av">R</div>R-AI Search</div>
-  </div>
-  <div id="status"></div>
-</header>
-<div id="chat"></div>
-<form id="f"><input id="q" placeholder="Andika swali lako..." autocomplete="off" required><button id="b">Tuma</button></form>
+:root{--bg:#fff;--fg:#17251d;--card:#f3f6f3;--bd:#d3dcd5;--pri:#12703a;--mut:#667a6d;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0f1713;--fg:#e6efe9;--card:#18231d;--bd:#2b3a31;--pri:#3fc47a;--mut:#93a89a}}
+:root[data-theme=dark]{--bg:#0f1713;--fg:#e6efe9;--card:#18231d;--bd:#2b3a31;--pri:#3fc47a;--mut:#93a89a}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}body{margin:0;font:15px/1.5 Georgia,'Times New Roman',serif;background:var(--bg);color:var(--fg)}
+h1,h2,h3,button,input,select,textarea,nav{font-family:system-ui,-apple-system,'Segoe UI',sans-serif}
+header{padding:12px 14px 10px;position:relative}header h1{margin:0;font-size:18px}header small{color:var(--mut)}
+header:after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:linear-gradient(90deg,#1eb53a 35%,#fcd116 35% 42%,#000 42% 58%,#fcd116 58% 65%,#00a3dd 65%)}
+#main{padding:14px 14px 90px;max-width:980px;margin:auto}
+nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--bg);border-top:1px solid var(--bd);padding-bottom:env(safe-area-inset-bottom,0px);z-index:5}
+nav button{flex:1;border:0;background:none;color:var(--mut);padding:8px 2px;font-size:11px}nav button.on{color:var(--pri);font-weight:700}nav span{display:block;font-size:19px}
+.g{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.c{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:12px;margin-bottom:10px}
+.n{font:700 28px system-ui;color:var(--pri)}.m{color:var(--mut);font-size:13px}
+button,select,input,textarea{font-size:14px;padding:8px 10px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--fg)}
+button{cursor:pointer}button.pri{background:var(--pri);color:#fff;border-color:var(--pri)}
+input,select,textarea{width:100%}textarea{min-height:70px}label{display:block;margin:8px 0;font-size:13px;color:var(--mut)}input[type=checkbox]{width:auto}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0;align-items:center}.row>*{width:auto}.row input.f{flex:1;min-width:140px}
+.p{display:flex;gap:10px;align-items:center;cursor:pointer}.av{width:42px;height:42px;border-radius:50%;background:#7c9a86;color:#fff;display:grid;place-items:center;font:700 17px system-ui;overflow:hidden;flex:none}.av img{width:100%;height:100%;object-fit:cover}
+.b{font:11px system-ui;padding:1px 7px;border-radius:9px;border:1px solid var(--bd);color:var(--mut)}.b.k{border-color:#c0392b;color:#c0392b}
+#m{display:none;position:fixed;inset:0;background:#0008;z-index:9;padding:12px;overflow:auto}#m.on{display:block}.box{background:var(--bg);max-width:560px;margin:auto;border-radius:12px;padding:16px}
+a{color:var(--pri);cursor:pointer;text-decoration:underline}
+#sv{width:100%;height:68vh;border:1px solid var(--bd);border-radius:10px;background:var(--card);touch-action:none;cursor:grab}
+.cd{cursor:pointer}.cd rect{fill:var(--bg);stroke-width:2}.cd rect.M{stroke:#00a3dd}.cd rect.F{stroke:#d6407a}.cd rect.dead{stroke-dasharray:5 3;opacity:.8}
+.nm{font:600 13px system-ui;fill:var(--fg)}.sm{font:11px system-ui;fill:var(--mut)}.ph{fill:#7c9a86}.ini{font:700 16px system-ui;fill:#fff;text-anchor:middle}.ln{stroke:var(--mut);fill:none;stroke-width:1.5}
+textarea#bk{min-height:90px;font-size:11px}
+</style></head><body>
+<header><h1>FAMILY TREE</h1><small>Mfumo wa kumbukumbu za familia na koo</small></header>
+<div id="main"></div><nav id="nav"></nav><div id="m"></div>
 <script>
-const NAMES={sade:"Sade",fire:"R-AI Fire",search:"R-AI Search"},INIT={sade:"S",fire:"F",search:"R"};
-const chat=document.getElementById("chat"),st=document.getElementById("status"),btn=document.getElementById("b");
-function el(t,c,x){const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
-function addMsg(m){
-  const w=el("div","msg "+m.ai+(m.error?" err":""));
-  const av=el("div","av",INIT[m.ai]);av.style.cssText="background:var(--c);flex:none;width:30px;height:30px;color:#fff;border-radius:50%;display:grid;place-items:center";
-  const b=el("div","bub"),h=el("div","nm",NAMES[m.ai]);
-  if(m.kind)h.appendChild(el("span","kd",m.kind));
-  b.append(h,el("div","tx",m.text));
-  if(m.sources&&m.sources.length){
-    const s=el("div","src");
-    m.sources.forEach(r=>{
-      if(!/^https?:\/\//.test(r.url))return;
-      const a=el("a",null,r.title||r.url);a.href=r.url;a.target="_blank";a.rel="noopener noreferrer";
-      s.appendChild(a);
-      const meta=[r.score!=null?"score "+r.score.toFixed(2):"",r.date||""].filter(Boolean).join(" · ");
-      if(meta)s.appendChild(el("small",null,meta));
-    });
-    b.appendChild(s);
-  }
-  w.append(av,b);chat.appendChild(w);chat.scrollTop=chat.scrollHeight;
-  document.querySelectorAll(".ai").forEach(a=>a.classList.remove("active"));
-  document.getElementById("ai-"+m.ai).classList.add("active");
-}
-document.getElementById("f").onsubmit=async e=>{
-  e.preventDefault();
-  const q=document.getElementById("q");const question=q.value.trim();if(!question)return;
-  q.value="";btn.disabled=true;
-  const me=el("div","msg");const mb=el("div","bub",null);mb.style.setProperty("--c","var(--mut)");
-  mb.append(el("div","nm","Wewe"),el("div","tx",question));me.appendChild(mb);chat.appendChild(me);
-  try{
-    const r=await fetch("/api/debate",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({question})});
-    if(!r.ok||!r.body)throw new Error(await r.text());
-    const rd=r.body.getReader(),dec=new TextDecoder();let buf="";
-    for(;;){
-      const {value,done}=await rd.read();if(done)break;
-      buf+=dec.decode(value,{stream:true});
-      let i;while((i=buf.indexOf("\n\n"))>=0){
-        const blk=buf.slice(0,i);buf=buf.slice(i+2);
-        const ev=(blk.match(/^event: (.*)$/m)||[])[1],d=(blk.match(/^data: (.*)$/m)||[])[1];
-        if(!ev||!d)continue;const data=JSON.parse(d);
-        if(ev==="status")st.textContent=data.text;
-        else if(ev==="message")addMsg(data);
-      }
-    }
-  }catch(err){addMsg({ai:"sade",kind:"Hitilafu",text:"Imeshindwa kuunganisha: "+err.message,error:true})}
-  btn.disabled=false;
-};
-</script>
-</body>
-</html>
+const L={sw:{dash:'Dashibodi',tree:'Mti',ppl:'Watu',clan:'Koo',tl:'Historia',set:'Zaidi',add:'Ongeza',save:'Hifadhi',x:'Funga',ed:'Hariri',del:'Futa',q:'Tafuta jina, ukoo, kijiji, mzazi…'},en:{dash:'Dashboard',tree:'Tree',ppl:'People',clan:'Clans',tl:'Timeline',set:'More',add:'Add',save:'Save',x:'Close',ed:'Edit',del:'Delete',q:'Search name, clan, place, parent…'}};
+let S={clans:[],persons:[],marriages:[],events:[],audit:[],lang:'sw',demo:false},P={},db,v='d',TR={clan:'',root:'',depth:99,x:10,y:10,k:1};
+const $=s=>document.querySelector(s),t=k=>L[S.lang||'sw'][k]||k,uid=()=>'i'+Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])),short=(s,n)=>s.length>n?s.slice(0,n-1)+'…':s;
+const byId=i=>S.persons.find(p=>p.id==i),nm=i=>byId(i)?.name||'',cn=i=>S.clans.find(c=>c.id==i)?.name||'';
+const kids=i=>S.persons.filter(p=>p.father==i||p.mother==i),spIds=i=>S.marriages.filter(m=>m.a==i||m.b==i).map(m=>m.a==i?m.b:m.a);
+const sibs=i=>{const p=byId(i);return S.persons.filter(x=>x.id!=i&&((p.father&&x.father==p.father)||(p.mother&&x.mother==p.mother)))};
+const uniq=a=>[...new Map(a.filter(Boolean).map(x=>[x.id,x])).values()];
+function desc(id){const out=[],q=[id];while(q.length){kids(q.shift()).forEach(c=>{if(!out.includes(c.id)){out.push(c.id);q.push(c.id)}})}return out}
+const yrs=p=>(p.birth||'?')+(p.death?' – '+p.death+' †':'');
+const log=a=>{S.audit.push({t:new Date().toISOString().slice(0,16).replace('T',' '),a});if(S.audit.length>200)S.audit.shift()};
+const get=(s,k)=>new Promise(r=>{if(!db)return r();try{const q=db.transaction(s).objectStore(s).get(k);q.onsuccess=()=>r(q.result);q.onerror=()=>r()}catch(e){r()}});
+const put=(s,k,x)=>new Promise(r=>{if(!db)return r();try{const t=db.transaction(s,'readwrite');t.objectStore(s).put(x,k);t.oncomplete=r;t.onerror=r}catch(e){r()}});
+const save=()=>put('kv','S',S);
+async function init(){try{await new Promise((r,j)=>{const q=indexedDB.open('familytree',1);q.onupgradeneeded=()=>{q.result.createObjectStore('kv');q.result.createObjectStore('ph')};q.onsuccess=()=>{db=q.result;r()};q.onerror=j})}catch(e){}
+const s=await get('kv','S');if(s)S=Object.assign(S,s);await Promise.all(S.persons.filter(p=>p.photo).map(async p=>{P[p.id]=await get('ph',p.id)}));render()}
+function render(){if(S.dark!==undefined)document.documentElement.dataset.theme=S.dark?'dark':'light';
+const V={d:dash,t:tree,p:people,c:clans,h:time,s:sett};$('#main').innerHTML=V[v]();if(v=='t')initTree();
+$('#nav').innerHTML=[['d','▦','dash'],['t','⑂','tree'],['p','☺','ppl'],['c','⌂','clan'],['h','◷','tl'],['s','⋯','set']].map(a=>`<button class="${v==a[0]?'on':''}" onclick="go('${a[0]}')"><span>${a[1]}</span>${t(a[2])}</button>`).join('')}
+const go=x=>{v=x;render();scrollTo(0,0)},cl=()=>$('#m').className='';
+function form(title,fs,cb){const m=$('#m');m.innerHTML=`<div class=box><h3>${title}</h3>${fs.map(f=>`<label>${f.l}${f.t=='s'?`<select id="f_${f.id}">${f.o.map(o=>`<option value="${o[0]}" ${o[0]==f.v?'selected':''}>${esc(o[1])}</option>`).join('')}</select>`:f.t=='a'?`<textarea id="f_${f.id}">${esc(f.v||'')}</textarea>`:f.t=='c'?` <input type=checkbox id="f_${f.id}" ${f.v?'checked':''}>`:`<input id="f_${f.id}" value="${esc(f.v||'')}">`}</label>`).join('')}<div class=row><button class=pri id=ok>${t('save')}</button><button onclick="cl()">${t('x')}</button></div></div>`;m.className='on';
+$('#ok').onclick=()=>{const o={};fs.forEach(f=>{const e=$('#f_'+f.id);o[f.id]=f.t=='c'?e.checked:e.value.trim()});if(cb(o)!==false)cl()}}
+function dash(){const a=S.persons,al=a.filter(p=>!p.death).length,gm={},g=p=>gm[p.id]||(gm[p.id]=1+Math.max(0,...[p.father,p.mother].filter(Boolean).map(i=>byId(i)?g(byId(i)):0))),gen=a.length?Math.max(...a.map(g)):0,inc=a.filter(p=>!p.birth||!p.bplace);
+const st=(n,l)=>`<div class=c><div class=n>${n}</div><div class=m>${l}</div></div>`;
+return `<div class=g>${st(S.clans.length,'Koo')}${st(a.length,'Watu')}${st(a.filter(p=>p.sex=='M').length,'Wanaume')}${st(a.filter(p=>p.sex=='F').length,'Wanawake')}${st(al,'Walio hai')}${st(a.length-al,'Waliofariki')}${st(gen,'Vizazi')}</div>
+<h3>Walioongezwa hivi karibuni</h3>${a.slice(-5).reverse().map(row).join('')||'<p class=m>Bado hakuna mtu. Nenda kwenye “Watu” kuongeza, au “Zaidi” kupakia data ya majaribio.</p>'}
+<h3>Taarifa hazijakamilika (${inc.length})</h3>${inc.slice(0,8).map(row).join('')||'<p class=m>Hakuna.</p>'}`}
+const av=p=>`<div class=av>${P[p.id]?`<img src="${P[p.id]}">`:esc((p.name||'?')[0])}</div>`;
+const row=p=>`<div class="c p" onclick="prof('${p.id}')">${av(p)}<div><b>${esc(p.name)}</b> ${p.status&&p.status!='VERIFIED'?`<span class="b ${p.status=='KINZANI'?'k':''}">${p.status}</span>`:''}<div class=m>${yrs(p)} ${p.clan?'· '+esc(cn(p.clan)):''}</div></div></div>`;
+let Q='';
+function people(){return `<div class=row><input class=f id=q placeholder="${t('q')}" value="${esc(Q)}" oninput="Q=this.value;$('#pl').innerHTML=plist()"><button class=pri onclick="pform()">+ ${t('add')}</button></div><div id=pl>${plist()}</div>`}
+function plist(){const q=Q.toLowerCase(),l=S.persons.filter(p=>!q||[p.name,p.nick,p.bplace,p.live,cn(p.clan),nm(p.father),nm(p.mother)].join(' ').toLowerCase().includes(q));return l.map(row).join('')||'<p class=m>Hakuna matokeo.</p>'}
+function pform(id){const p=id?byId(id):{sex:'M',status:'UNVERIFIED'},ms=[['','— haijulikani —']],fs=[['','— haijulikani —']];S.persons.filter(x=>x.id!=id).forEach(x=>(x.sex=='M'?ms:fs).push([x.id,x.name]));
+form(id?t('ed'):t('add'),[{id:'name',l:'Majina kamili *',v:p.name},{id:'nick',l:'Jina la utani',v:p.nick},{id:'sex',l:'Jinsia',t:'s',v:p.sex,o:[['M','Me'],['F','Ke']]},{id:'birth',l:'Alizaliwa (mwaka/tarehe)',v:p.birth},{id:'bplace',l:'Mahali alipozaliwa',v:p.bplace},{id:'death',l:'Alifariki (mwaka/tarehe)',v:p.death},{id:'grave',l:'Mahali alipozikwa',v:p.grave},{id:'job',l:'Kazi',v:p.job},{id:'live',l:'Anapoishi',v:p.live},{id:'phone',l:'Simu (hiari)',v:p.phone},{id:'rel',l:'Dini (hiari)',v:p.rel},{id:'clan',l:'Ukoo',t:'s',v:p.clan||'',o:[['','—'],...S.clans.map(c=>[c.id,c.name])]},{id:'father',l:'Baba',t:'s',v:p.father||'',o:ms},{id:'mother',l:'Mama',t:'s',v:p.mother||'',o:fs},{id:'adopt',l:'Mtoto wa kuasili/malezi',t:'c',v:p.adopt},{id:'bio',l:'Historia fupi',t:'a',v:p.bio},{id:'status',l:'Uhakiki',t:'s',v:p.status,o:[['UNVERIFIED','UNVERIFIED'],['VERIFIED','VERIFIED'],['KINZANI','KINZANI']]}],o=>{
+if(!o.name){alert('Jina linahitajika.');return false}const ds=id?desc(id):[];
+for(const k of['father','mother'])if(o[k]&&(o[k]==id||ds.includes(o[k]))){alert('Uhusiano huu hauwezekani (mzunguko wa vizazi).');return false}
+if(!id&&S.persons.some(x=>x.name.toLowerCase()==o.name.toLowerCase()&&x.birth==o.birth)&&!confirm('Mtu mwenye jina na tarehe hii tayari yupo. Endelea?'))return false;
+const y=s=>parseInt(s)||0;for(const k of['father','mother'])if(o[k]&&y(byId(o[k]).birth)&&y(o.birth)&&y(byId(o[k]).birth)>=y(o.birth)){alert('Tahadhari: mzazi anaonekana kuzaliwa baada ya mtoto. Imewekwa KINZANI kwa uhakiki.');o.status='KINZANI'}
+if(id){Object.assign(p,o)}else{Object.assign(p,o,{id:uid()});S.persons.push(p)}log((id?'Alihariri ':'Aliongeza ')+o.name);save();render();if(id)setTimeout(()=>prof(id),0)})}
+function prof(id){const p=byId(id);if(!p)return;const lk=(x,h)=>`<a onclick="prof('${x.id}')">${esc(x.name)}</a>${h?' (nusu)':''}`,R=(l,a)=>a.length?`<p><b>${l}:</b> ${a.join(', ')}</p>`:'';
+const f=byId(p.father),mo=byId(p.mother),sb=sibs(id),par=[f,mo].filter(Boolean),gp=uniq(par.flatMap(x=>[byId(x.father),byId(x.mother)])),ks=kids(id),gk=uniq(ks.flatMap(x=>kids(x.id))),ggk=uniq(gk.flatMap(x=>kids(x.id))),un=uniq(par.flatMap(x=>sibs(x.id))),cz=uniq(un.flatMap(x=>kids(x.id)));
+const mar=S.marriages.filter(m=>m.a==id||m.b==id);
+$('#m').innerHTML=`<div class=box><div class=p style="cursor:default">${av(p).replace('42px','64px')}<div><h3 style="margin:0">${esc(p.name)} ${p.sex=='M'?'♂':'♀'}</h3><div class=m>${esc(p.nick?'“'+p.nick+'” · ':'')}${yrs(p)} · <span class=b>${p.status}</span></div></div></div>
+<div class=row><button onclick="pic('${id}')">📷 Picha</button><button onclick="pform('${id}')">${t('ed')}</button><button onclick="mform('${id}')">⚭ Mwenzi</button><button onclick="TR.root='${id}';cl();go('t')">Mti</button></div>
+${[['Ukoo',cn(p.clan)],['Alizaliwa',p.bplace],['Alizikwa',p.grave],['Kazi',p.job],['Anaishi',p.live],['Simu',p.phone],['Dini',p.rel],['Historia',p.bio]].filter(a=>a[1]).map(a=>`<p><b>${a[0]}:</b> ${esc(a[1])}</p>`).join('')}<hr>
+${R('Baba',f?[lk(f)]:[])}${R('Mama',mo?[lk(mo)]:[])}${p.adopt?'<p class=m>Mtoto wa kuasili/malezi</p>':''}${R('Mwenzi (ndoa)',mar.map(m=>`${lk(byId(m.a==id?m.b:m.a))}${m.year?' ('+esc(m.year)+')':''} <a onclick="dm('${m.id}','${id}')">✕</a>`))}${R('Watoto',ks.map(x=>lk(x)))}${R('Ndugu',sb.map(x=>lk(x,!(p.father&&x.father==p.father&&p.mother&&x.mother==p.mother))))}${R('Babu/Bibi',gp.map(x=>lk(x)))}${R('Wajukuu',gk.map(x=>lk(x)))}${R('Vitukuu',ggk.map(x=>lk(x)))}${R('Wajomba/Shangazi',un.map(x=>lk(x)))}${R('Binamu',cz.map(x=>lk(x)))}
+<div class=row><button onclick="dp('${id}')">${t('del')}</button><button onclick="cl()">${t('x')}</button></div></div>`;$('#m').className='on'}
+function mform(id){const o=[['','—'],...S.persons.filter(x=>x.id!=id&&!spIds(id).includes(x.id)).map(x=>[x.id,x.name])];form('Ongeza mwenzi wa ndoa',[{id:'w',l:'Mwenzi',t:'s',o},{id:'y',l:'Mwaka wa ndoa'}],r=>{if(!r.w){alert('Chagua mtu.');return false}S.marriages.push({id:uid(),a:id,b:r.w,year:r.y});log('Ndoa: '+nm(id)+' & '+nm(r.w));save();render();setTimeout(()=>prof(id),0)})}
+function dm(mid,id){if(!confirm('Futa ndoa hii?'))return;S.marriages=S.marriages.filter(m=>m.id!=mid);log('Alifuta ndoa');save();render();prof(id)}
+function dp(id){if(!confirm('Futa '+nm(id)+'? Watoto wake watabaki bila mzazi huyu.'))return;log('Alifuta '+nm(id));S.persons.forEach(p=>{if(p.father==id)p.father='';if(p.mother==id)p.mother=''});S.persons=S.persons.filter(p=>p.id!=id);S.marriages=S.marriages.filter(m=>m.a!=id&&m.b!=id);delete P[id];put('ph',id,null);save();cl();render()}
+function pic(id){const i=document.createElement('input');i.type='file';i.accept='image/*';i.onchange=()=>{const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=async()=>{const c=document.createElement('canvas'),s=Math.min(1,260/Math.max(im.width,im.height));c.width=im.width*s;c.height=im.height*s;c.getContext('2d').drawImage(im,0,0,c.width,c.height);const u=c.toDataURL('image/jpeg',.8);P[id]=u;byId(id).photo=1;await put('ph',id,u);log('Picha: '+nm(id));await save();render();prof(id)};im.src=r.result};r.readAsDataURL(i.files[0])};i.click()}
+function clans(){return `<div class=row><button class=pri onclick="cform()">+ Ukoo mpya</button></div>`+(S.clans.map(c=>`<div class=c><h3 style="margin:0">${esc(c.name)}</h3><div class=m>Mwanzilishi: ${esc(c.founder||'haijulikani')} · ${esc([c.vil,c.ward,c.dist,c.reg].filter(Boolean).join(', '))} ${esc(c.per||'')}</div><p>${esc(c.hist||'')}</p><div class=m>Watu: ${S.persons.filter(p=>p.clan==c.id).length}</div><div class=row><button onclick="TR.clan='${c.id}';TR.root='';go('t')">Mti wa ukoo</button><button onclick="cform('${c.id}')">${t('ed')}</button><button onclick="dc('${c.id}')">${t('del')}</button></div></div>`).join('')||'<p class=m>Bado hakuna ukoo. Anza kwa kuongeza ukoo wa kwanza.</p>')}
+function cform(id){const c=id?S.clans.find(x=>x.id==id):{};form('Ukoo',[['name','Jina la ukoo *'],['founder','Mwanzilishi'],['vil','Kijiji'],['ward','Kata'],['dist','Wilaya'],['reg','Mkoa'],['per','Kipindi cha kuanzishwa'],['hist','Historia ya ukoo','a']].map(a=>({id:a[0],l:a[1],t:a[2],v:c[a[0]]})),o=>{if(!o.name){alert('Jina linahitajika.');return false}if(id)Object.assign(c,o);else S.clans.push(Object.assign(o,{id:uid()}));log('Ukoo: '+o.name);save();render()})}
+function dc(id){if(!confirm('Futa ukoo huu? Watu wake hawatafutwa.'))return;S.persons.forEach(p=>{if(p.clan==id)p.clan=''});S.clans=S.clans.filter(c=>c.id!=id);save();render()}
+function tree(){const ps=[['','Watu wote'],...S.persons.map(p=>[p.id,p.name])];const sel=(id,o,val,fn)=>`<select id=${id} style="width:auto;max-width:48%" onchange="${fn}">${o.map(a=>`<option value="${a[0]}" ${a[0]==val?'selected':''}>${esc(a[1])}</option>`).join('')}</select>`;
+return `<div class=row>${sel('tc',[['','Koo zote'],...S.clans.map(c=>[c.id,c.name])],TR.clan,"TR.clan=this.value;TR.root='';render()")}${sel('tr',ps,TR.root,"TR.root=this.value;render()")}${sel('td',[[99,'Vizazi vyote'],[1,'Kizazi 1'],[2,'Vizazi 2'],[3,'Vizazi 3'],[4,'Vizazi 4']],TR.depth,"TR.depth=+this.value;render()")}<button onclick="zm(1.25)">＋</button><button onclick="zm(.8)">－</button></div><svg id=sv></svg><p class=m>Buruta kusogeza · kunjua kwa ＋/－ au gurudumu · bonyeza kadi kufungua taarifa. Mstari uliokatika = amefariki; bluu = me, pinki = ke.</p>`}
+function bld(p,d,seen){seen.add(p.id);const sp=spIds(p.id).filter(x=>!seen.has(x)&&byId(x));sp.forEach(x=>seen.add(x));const n={p,sp:sp.map(byId),ch:[]};if(d<TR.depth)for(const c of uniq([...kids(p.id),...sp.flatMap(kids)]))if(!seen.has(c.id))n.ch.push(bld(c,d+1,seen));return n}
+function lay(n,x0,d){n.y=d*130+10;if(!n.ch.length){n.x=x0+85;return 170}let w=0;n.ch.forEach(c=>w+=lay(c,x0+w,d+1));n.x=(n.ch[0].x+n.ch[n.ch.length-1].x)/2;return Math.max(w,170)}
+let TW=0;
+function initTree(){const sv=$('#sv'),seen=new Set(),ps=S.persons.filter(p=>!TR.clan||p.clan==TR.clan),roots=TR.root&&byId(TR.root)?[byId(TR.root)]:ps.filter(p=>!p.father&&!p.mother),ns=[];roots.forEach(p=>{if(!seen.has(p.id))ns.push(bld(p,0,seen))});
+let x0=0;ns.forEach(n=>x0+=lay(n,x0,0)+30);TW=x0;const ln=[],cd=[];
+const dr=n=>{n.ch.forEach(c=>{ln.push(1);dr(c)});const p=n.p;
+cd.push(`<g class=cd data-id="${p.id}" transform="translate(${n.x-75} ${n.y})"><rect width=150 height=92 rx=12 class="${p.sex}${p.death?' dead':''}"/><clipPath id="c${p.id}"><circle cx=28 cy=32 r=20 /></clipPath>${P[p.id]?`<image href="${P[p.id]}" x=8 y=12 width=40 height=40 clip-path="url(#c${p.id})" preserveAspectRatio="xMidYMid slice"/>`:`<circle cx=28 cy=32 r=20 class=ph /><text x=28 y=38 class=ini>${esc(p.name[0])}</text>`}<text x=54 y=28 class=nm>${esc(short(p.name,14))}</text><text x=54 y=46 class=sm>${esc(yrs(p))}</text><text x=10 y=76 class=sm>${n.sp.length?'⚭ '+esc(short(n.sp.map(s=>s.name).join(', '),20)):''}</text></g>`)};ns.forEach(dr);
+sv.innerHTML=ns.length?`<g id=vg></g>`:`<text x=20 y=40 class=nm>Hakuna watu bado. Ongeza watu au pakia data ya majaribio (Zaidi).</text>`;
+if(!ns.length)return;
+const all=[];ns.forEach(n=>{(function dr(n){n.ch.forEach(c=>{all.push(`<path class=ln d="M${n.x} ${n.y+92}V${n.y+111}H${c.x}V${c.y}"/>`);dr(c)})})(n)});
+$('#vg').innerHTML=all.join('')+cd.join('');
+TR.k=Math.min(1,(sv.clientWidth-20)/Math.max(TW,1));TR.x=10;TR.y=10;up();
+let dn=0,mv=0,lx,ly;sv.onpointerdown=e=>{dn=1;mv=0;lx=e.clientX;ly=e.clientY};sv.onpointermove=e=>{if(!dn)return;const dx=e.clientX-lx,dy=e.clientY-ly;if(Math.abs(dx)+Math.abs(dy)>3)mv=1;if(mv){TR.x+=dx;TR.y+=dy;lx=e.clientX;ly=e.clientY;up()}};
+sv.onpointerup=e=>{dn=0;if(!mv){const g=e.target.closest('[data-id]');if(g)prof(g.dataset.id)}};sv.onpointerleave=()=>dn=0;sv.onwheel=e=>{e.preventDefault();zm(e.deltaY<0?1.1:.9)}}
+const up=()=>$('#vg')&&$('#vg').setAttribute('transform',`translate(${TR.x} ${TR.y}) scale(${TR.k})`),zm=f=>{TR.k=Math.max(.15,Math.min(3,TR.k*f));up()};
+function time(){const e=[...S.events.map(x=>({y:x.year,t:(x.type||'Tukio')+': '+x.text+(x.p?' — '+nm(x.p):''),id:x.id})),...S.persons.filter(p=>p.birth).map(p=>({y:p.birth,t:'Kuzaliwa: '+p.name})),...S.persons.filter(p=>p.death).map(p=>({y:p.death,t:'Kifo: '+p.name})),...S.marriages.filter(m=>m.year).map(m=>({y:m.year,t:'Ndoa: '+nm(m.a)+' na '+nm(m.b)}))].sort((a,b)=>(parseInt(a.y)||0)-(parseInt(b.y)||0));
+return `<div class=row><button class=pri onclick="eform()">+ Tukio</button></div>`+(e.map(x=>`<div class=c><b>${esc(x.y)}</b> — ${esc(x.t)} ${x.id?`<a onclick="de('${x.id}')">✕</a>`:''}</div>`).join('')||'<p class=m>Bado hakuna matukio.</p>')}
+function eform(){form('Tukio la familia',[{id:'year',l:'Mwaka *'},{id:'type',l:'Aina',t:'s',o:['Kuhamia','Tukio muhimu','Mafanikio','Mazishi'].map(x=>[x,x])},{id:'text',l:'Maelezo *'},{id:'p',l:'Mtu husika',t:'s',o:[['','—'],...S.persons.map(p=>[p.id,p.name])]}],o=>{if(!o.year||!o.text){alert('Mwaka na maelezo vinahitajika.');return false}S.events.push(Object.assign(o,{id:uid()}));log('Tukio: '+o.text);save();render()})}
+function de(id){S.events=S.events.filter(x=>x.id!=id);save();render()}
+function sett(){return `<div class=c><h3>Mipangilio</h3><div class=row><button onclick="S.lang=S.lang=='sw'?'en':'sw';save();render()">Kiswahili / English</button><button onclick="S.dark=!(S.dark??matchMedia('(prefers-color-scheme:dark)').matches);save();render()">Giza / Mwanga</button></div></div>
+<div class=c><h3>Data ya majaribio</h3><p class=m>Data ya mfano (Onesmo na vizazi vyake) imewekwa alama DEMO. Ifute kabla ya kuweka data halisi.</p><div class=row><button onclick="demo()">Pakia demo</button><button onclick="wipe()">Futa data yote</button></div></div>
+<div class=c><h3>Backup na Restore</h3><p class=m>Backup (pamoja na picha) ni maandishi ya JSON. Nakili uyahifadhi; kuhamisha kifaa kingine, yabandike hapa kwenye kifaa hicho kisha bonyeza Rejesha.</p><textarea id=bk placeholder="JSON ya backup…"></textarea><div class=row><button onclick="bkp()">Tengeneza na nakili</button><button class=pri onclick="rst($('#bk').value)">Rejesha</button><input type=file accept=".json,text/plain" onchange="fr(this)" style="width:100%"></div></div>
+<div class=c><h3>Kumbukumbu za mabadiliko</h3>${S.audit.slice(-8).reverse().map(a=>`<div class=m>${a.t} — ${esc(a.a)}</div>`).join('')||'<span class=m>Hakuna.</span>'}</div>`}
+function bkp(){const s=JSON.stringify({S,P});$('#bk').value=s;$('#bk').select();try{navigator.clipboard.writeText(s)}catch(e){}}
+function fr(i){const r=new FileReader();r.onload=()=>rst(r.result);r.readAsText(i.files[0])}
+async function rst(s){try{const o=JSON.parse(s);if(!o.S||!confirm('Rejesha itafuta data ya sasa. Endelea?'))return;S=Object.assign({clans:[],persons:[],marriages:[],events:[],audit:[]},o.S);P=o.P||{};await save();for(const k in P)await put('ph',k,P[k]);log('Rejesha backup');render()}catch(e){alert('Backup si sahihi.')}}
+function wipe(){if(!confirm('Futa data yote? Hii haiwezi kurudishwa.'))return;S={clans:[],persons:[],marriages:[],events:[],audit:[],lang:S.lang,dark:S.dark,demo:false};P={};save();render()}
+function demo(){if(S.persons.length&&!S.demo){alert('Una data halisi. Futa kwanza kama unataka demo.');return}S.demo=true;S.clans=[{id:'dc',name:'Ukoo wa Onesmo (DEMO)',founder:'Onesmo',reg:'DEMO',hist:'Data ya majaribio.'}];
+const a=(id,name,sex,birth,death,f,m)=>({id,name,sex,birth,death:death||'',father:f||'',mother:m||'',clan:'dc',status:'UNVERIFIED',bplace:'DEMO'});
+S.persons=[a('d1','Onesmo','M','1920','1990'),a('d2','Rehema','F','1925','1995'),a('d3','Herman','M','1945','','d1','d2'),a('d4','Maria','F','1948','','d1','d2'),a('d5','Neema','F','1950'),a('d6','John','M','1972','','d3','d5'),a('d7','Peter','M','1975','','d3','d5'),a('d8','Anna','F','1978','','d3','d5'),a('d9','Joyce','F','1974'),a('d10','David','M','1998','','d6','d9'),a('d11','Grace','F','2001','','d6','d9'),a('d12','Michael','M','2024','','d10')];
+S.marriages=[{id:'m1',a:'d1',b:'d2',year:'1943'},{id:'m2',a:'d3',b:'d5',year:'1970'},{id:'m3',a:'d6',b:'d9',year:'1996'}];log('Alipakia demo');save();render()}
+init()
+</script></body></html>
